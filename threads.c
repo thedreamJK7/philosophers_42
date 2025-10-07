@@ -8,7 +8,7 @@ pthread_mutex_t mutex;
 
 void* routine(void *arg)
 {
-	for (size_t i = 0; i < 10000000; i++)
+	for (size_t i = 0; i < 10000; i++)
 	{
 		pthread_mutex_lock(&mutex);
 		x++;
@@ -18,24 +18,20 @@ void* routine(void *arg)
 
 int main()
 {
-	pthread_t t1, t2, t3, t4;
+	pthread_t t[10];
 	pthread_mutex_init(&mutex, NULL);
-	if (pthread_create(&t1, NULL, &routine, NULL) != 0)
-		return (1);
-	if (pthread_create(&t2, NULL, &routine, NULL) != 0)
-		return (3);
-	if (pthread_create(&t3, NULL, &routine, NULL) != 0)
-		return (1);
-	if (pthread_create(&t4, NULL, &routine, NULL) != 0)
-		return (3);
-	if (pthread_join(t1, NULL) != 0)
-		return (2);
-	if (pthread_join(t2, NULL) != 0)
-		return (4);
-	if (pthread_join(t3, NULL) != 0)
-		return (2);
-	if (pthread_join(t4, NULL) != 0)
-		return (4);
+	for (size_t i = 0; i < 10; i++)
+	{
+		printf("Thread %ld has started\n", i + 1);
+		if (pthread_create(t + i, NULL, &routine, NULL) != 0)
+			return (1);
+	}
+	for (size_t i = 0; i < 10; i++)
+	{
+		printf("Thread %ld has finished\n", i + 1);
+		if (pthread_join(t[i], NULL) != 0)
+			return (2);
+	}
 	pthread_mutex_destroy(&mutex);
 	printf("x = %d\n", x);
 	return (0);
