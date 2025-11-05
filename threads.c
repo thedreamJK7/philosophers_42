@@ -11,9 +11,11 @@ void* routine(void *arg)
 	for (size_t i = 0; i < 10000; i++)
 	{
 		pthread_mutex_lock(&mutex);
+		//pthread_mutex_lock(&mutex);
 		x++;
 		pthread_mutex_unlock(&mutex);
 	}
+	return (NULL);
 }
 
 int main()
