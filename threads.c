@@ -3,38 +3,24 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int x = 1;
-pthread_mutex_t mutex;
-
 void* routine(void *arg)
 {
-	for (size_t i = 0; i < 10000; i++)
-	{
-		pthread_mutex_lock(&mutex);
-		//pthread_mutex_lock(&mutex);
-		x++;
-		pthread_mutex_unlock(&mutex);
-	}
-	return (NULL);
+	long tid = (long)arg;
+	printf("Salom men #%ld! - threadman \n", tid);
+	pthread_exit(NULL);
 }
 
 int main()
 {
-	pthread_t t[10];
-	pthread_mutex_init(&mutex, NULL);
-	for (size_t i = 0; i < 10; i++)
+	pthread_t t[3];
+	
+	for (long i = 0; 3 >= i; i++)
 	{
-		printf("Thread %ld has started\n", i + 1);
-		if (pthread_create(t + i, NULL, &routine, NULL) != 0)
-			return (1);
+		pthread_create(&t[i], NULL, routine, (void *)i);
 	}
-	for (size_t i = 0; i < 10; i++)
+	for (long i = 0; 3 >= i; i++)
 	{
-		printf("Thread %ld has finished\n", i + 1);
-		if (pthread_join(t[i], NULL) != 0)
-			return (2);
+		pthread_join(t[i], NULL);
 	}
-	pthread_mutex_destroy(&mutex);
-	printf("x = %d\n", x);
 	return (0);
 }
