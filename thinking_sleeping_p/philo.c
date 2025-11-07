@@ -16,9 +16,9 @@ int main(int argc, char const *argv[])
 		printf("Invalid argument recognized, Please try again");
 		return (1);
 	}
-	
-	init(&data, 3);
+	init(&data, num_philo);
 	create_threads(&data);
 	join_threads(&data);
+	free(data.philolo);
 	return (0);
 }

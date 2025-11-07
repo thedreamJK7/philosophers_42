@@ -3,16 +3,15 @@
 void* philo_life(void *arg)
 {
 	t_philo	*philo;
-
 	philo = (t_philo *)arg;
-	printf("Men tug'ildim %d\n", philo->id);
+	printf("Men tug'ildim %d mana shu vaqtda %ld\n", philo->id, philo->start_time);
 	return (0);
 }
 
 void	create_threads(t_data *data)
 {
 	for (size_t i = 0; i < data->num_philo; i++)
-		pthread_create(&data->philolo[i].thread, NULL, philo_life, (void *)i);
+		pthread_create(&data->philolo[i].thread, NULL, philo_life, &data->philolo[i]);
 }
 
 void	join_threads(t_data *data)

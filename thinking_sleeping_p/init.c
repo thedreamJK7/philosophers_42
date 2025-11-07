@@ -13,6 +13,7 @@ void init(t_data *data, int num_philo)
 	{
 		data->philolo[i].id = i;
 		data->philolo[i].state = THINKING;
+		usleep(500);
 		data->philolo[i].start_time = get_current_time();
 	}
 }
