@@ -27,3 +27,14 @@ long	get_current_time()
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 }
+
+void print_state(t_philo *philo, const char *state)
+{
+	long timestamp;
+	static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+	pthread_mutex_lock(&mutex);
+
+	timestamp = get_current_time() - philo->start_time;
+	printf("");
+}
