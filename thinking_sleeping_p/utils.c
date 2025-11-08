@@ -1,10 +1,22 @@
 #include "philo.h"
 
+static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
 void* philo_life(void *arg)
 {
 	t_philo	*philo;
 	philo = (t_philo *)arg;
-	printf("Men tug'ildim %d mana shu vaqtda %ld\n", philo->id, philo->start_time);
+	
+	while (1)
+	{
+		philo->state = THINKING;
+		print_state(philo, "THINKING");
+		usleep(150000);
+
+		philo->state = SLEEPING;
+		print_state(philo, "SLEEPING");
+		usleep(50000);
+	}
 	return (0);
 }
 
@@ -31,10 +43,11 @@ long	get_current_time()
 void print_state(t_philo *philo, const char *state)
 {
 	long timestamp;
-	static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 	pthread_mutex_lock(&mutex);
 
 	timestamp = get_current_time() - philo->start_time;
-	printf("");
+	printf("%ld Philosopher %d %s\n", timestamp, philo->id, state);
+
+	pthread_mutex_unlock(&mutex);
 }

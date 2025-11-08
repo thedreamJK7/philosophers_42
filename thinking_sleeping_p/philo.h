@@ -28,7 +28,8 @@ typedef struct s_data
 void	join_threads(t_data *data);
 long	get_current_time();
 void	create_threads(t_data *data);
-void* philo_life(void *arg);
-void init(t_data *data, int num_philo);
+void*	philo_life(void *arg);
+void	init(t_data *data, int num_philo);
+void	print_state(t_philo *philo, const char *state);
 
 #endif
