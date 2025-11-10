@@ -11,7 +11,7 @@ void* philo_life(void *arg)
 	{
 		philo->state = THINKING;
 		print_state(philo, "THINKING");
-		usleep(150000);
+		usleep(15000);
 
 		philo->state = SLEEPING;
 		print_state(philo, "SLEEPING");
