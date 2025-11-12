@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:12:54 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/10 17:17:27 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/12 18:55:24 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,6 @@ static int	validate_before_atoi(int argc, char **argv)
 			must be positive integers\n", 2), 1);
 		i++;
 	}
-	return (0);
-}
-
-/**
- * Validate command-line arguments count and format.
- */
-
-int	validate_args(int argc, char **argv)
-{
-	if (argc < 5 || argc > 6)
-		return (ft_putstr_fd("Error: Invalid number of arguments\n", 2), 1);
-	if (validate_before_atoi(argc, argv) != 0)
-		return (1);
 	return (0);
 }
 
@@ -103,6 +90,7 @@ static void	init_philos(t_data *data)
 	}
 }
 
+
 /**
 ** Initialize the simulation data structure with command-line arguments.
 ** Returns 0 on success, 1 on failure.
@@ -123,7 +111,8 @@ int	init_data(t_data *data, int argc, char **argv)
 		return (free(data->philos), 
 		ft_putstr_fd("Error: Memory allocation failed\n", 2), 1);
 	init_philos(data);
-	
+	if (init_forks(data) != 0)
+		return (1);
 	return (0);
 }
 

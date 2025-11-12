@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 11:55:42 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/10 17:01:00 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/12 18:54:10 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,12 @@ void		print_action(t_philo *philo, const char *action);
 int			init_data(t_data *data, int argc, char **argv);
 void		destroy_data(t_data *data);
 void		*philo_routine(void *arg);
+int			init_forks(t_data *data);
+int			validate_args(int argc, char **argv);
+
+/* cleanups */
+void	cleanup(t_data *data);
+void	destroy_single_mutex(pthread_mutex_t *mutex);
+void    destroy_fork_mutexes(t_data *data, int num);
 
 #endif
