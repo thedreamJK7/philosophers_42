@@ -4,8 +4,9 @@ CFLAGS = -Wall -Wextra -Werror -g
 LFLAGS = -pthread
 RM = rm -f
 INCLUDES = -I./includes/
-SRCS = main.c init.c utils1.c utils2.c cleanup.c utils_init.c philo_routine.c monitor.c
-
+SRCS = main.c init.c utils1.c utils2.c cleanup.c \
+		utils_init.c philo_routine.c monitor.c \
+		philo_utils.c
 OBJ_DIR = ./obj
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))

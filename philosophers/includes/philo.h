@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 11:55:42 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/14 21:01:56 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/14 21:49:55 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void		destroy_single_mutex(pthread_mutex_t *mutex);
 void		destroy_fork_mutexes(t_data *data, int num);
 int			philo_sleep(t_philo *philo);
 int			philo_think(t_philo *philo);
+int			create_philo_threads(t_data *data);
 
 #endif

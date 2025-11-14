@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 20:47:58 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/14 20:52:30 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/14 21:32:16 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,4 @@ int	init_forks(t_data *data)
 		destroy_fork_mutexes(data, i), 1);
 	return (0);
 }
+

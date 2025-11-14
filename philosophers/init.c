@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:12:54 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/14 20:43:09 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/14 21:48:50 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int	init_data(t_data *data, int argc, char **argv)
 		return (free(data->philos), 
 			ft_putstr_fd("Error: Memory allocation failed\n", 2), 1);
 	init_philos(data);
+	data->someone_died = 0;
+	data->start_time = get_time_in_ms();
 	if (init_forks(data) != 0)
 		return (1);
 	return (0);
