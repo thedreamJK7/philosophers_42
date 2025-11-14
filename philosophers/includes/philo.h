@@ -6,7 +6,7 @@
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 11:55:42 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/12 18:54:10 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 19:01:12 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_philo
 	int				meals_eaten;
 	struct s_data	*data;
 	pthread_t		thread;
+	pthread_mutex_t	meal_mutex;
+	pthread_mutex_t	last_meal_time_mutex;
 }				t_philo;
 
 typedef struct s_data
@@ -51,6 +53,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	t_philo			*philos;
+	pthread_t		monitor_routine;
 }				t_data;
 
 int			ft_atoi(const char *str);
@@ -64,6 +67,7 @@ void		destroy_data(t_data *data);
 void		*philo_routine(void *arg);
 int			init_forks(t_data *data);
 int			validate_args(int argc, char **argv);
+void		*monitor_routine(void *arg);
 
 /* cleanups */
 void	cleanup(t_data *data);

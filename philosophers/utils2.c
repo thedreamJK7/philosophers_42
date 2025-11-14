@@ -6,7 +6,7 @@
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:08:15 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/12 21:52:27 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 19:28:09 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ long long get_time_in_ms()
  * Sleep for a specified duration in milliseconds.
  */
 
-void ft_sleep(long long duration)
+void ft_usleep(long long time_in_ms)
 {
 	long long start_time = get_time_in_ms();
 
-	while (get_time_in_ms() - start_time < duration)
+	while (get_time_in_ms() - start_time < time_in_ms)
 		usleep(100);
 }
 
 /**
  * Print a message with timestamp and philosopher ID.
  */
-void print_status(t_data *data, int philo_id, const char *message)
+static void print_status(t_data *data, int philo_id, const char *message)
 {
 	long long timestamp;
 
@@ -47,7 +47,12 @@ void print_status(t_data *data, int philo_id, const char *message)
 	if (!data->someone_died)
 	{
 		timestamp = get_time_in_ms() - data->start_time;
-		printf("%lld %d %s\n", timestamp, philo_id + 1, message);
+		printf("%lldms philo %d %s\n", timestamp, philo_id, message);
 	}
 	pthread_mutex_unlock(&data->print_mutex);
+}
+
+void print_action(t_philo *philo, const char *action)
+{
+	print_status(philo->data, philo->id, action);
 }

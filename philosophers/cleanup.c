@@ -6,7 +6,7 @@
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:19:13 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/12 18:50:12 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 19:29:25 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void destroy_fork_mutexes(t_data *data, int num)
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}
-	free(data->forks);
-	free(data->philos);
 }
 
 /**
@@ -44,10 +42,22 @@ void destroy_fork_mutexes(t_data *data, int num)
  */
 void	cleanup(t_data *data)
 {
+	int i;
+
 	if (data->philos)
-		free(data->philos);
+	{
+		i = 0;
+		while (i < data->num_philos)
+		{
+			pthread_mutex_destroy(&data->philos[i].meal_mutex);
+			i++;
+		}
+	}
+	destroy_single_mutex(&data->print_mutex);
+	if (data->forks)
+		destroy_fork_mutexes(data, data->num_philos);
 	if (data->forks)
 		free(data->forks);
-	destroy_single_mutex(&data->print_mutex);
-	destroy_fork_mutexes(data, data->num_philos);
+	if (data->philos)
+		free(data->philos);
 }

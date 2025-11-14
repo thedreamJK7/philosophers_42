@@ -6,31 +6,11 @@
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:12:54 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/12 19:25:51 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:52:40 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/philo.h"
-
-/*
-** Validate command-line arguments before converting them to integers.
-** Ensures all arguments are positive integers.
-*/
-
-static int	validate_before_atoi(int argc, char **argv)
-{
-	int	i;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (is_number(argv[i]) != 0)
-			return (ft_putstr_fd("Error: All arguments \
-			must be positive integers\n", 2), 1);
-		i++;
-	}
-	return (0);
-}
 
 /**
 ** Validate the converted integer values against defined constraints.
@@ -86,6 +66,8 @@ static void	init_philos(t_data *data)
 		data->philos[i].last_meal = 0;
 		data->philos[i].meals_eaten = 0;
 		data->philos[i].data = data;
+		pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
+		pthread_mutex_init(&data->philos[i].last_meal_time_mutex, NULL);
 		i++;
 	}
 }

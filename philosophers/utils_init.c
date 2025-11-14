@@ -6,11 +6,31 @@
 /*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 20:47:58 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/12 21:09:51 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 19:27:39 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/philo.h"
+
+/*
+** Validate command-line arguments before converting them to integers.
+** Ensures all arguments are positive integers.
+*/
+
+static int	validate_before_atoi(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (is_number(argv[i]) != 0)
+			return (ft_putstr_fd("Error: All arguments \
+			must be positive integers\n", 2), 1);
+		i++;
+	}
+	return (0);
+}
 
 /**
  * Validate command-line arguments count and format.
