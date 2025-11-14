@@ -5,18 +5,24 @@ LFLAGS = -pthread
 RM = rm -f
 INCLUDES = -I./includes/
 SRCS = main.c init.c utils1.c utils2.c cleanup.c utils_init.c philo_routine.c monitor.c
-OBJS = $(SRCS:.c=.o)
+
+OBJ_DIR = ./obj
+
+OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJ_DIR) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $(NAME)
 
-%.o: %.c
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(RM) -r $(OBJS)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
