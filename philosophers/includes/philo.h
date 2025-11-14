@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 11:55:42 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/14 19:01:12 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 21:01:56 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
-
-
 
 typedef struct s_philo
 {
@@ -57,7 +55,7 @@ typedef struct s_data
 }				t_data;
 
 int			ft_atoi(const char *str);
-void 		ft_putstr_fd(const char *s, int fd);
+void		ft_putstr_fd(const char *s, int fd);
 int			is_number(char *str);
 long long	get_time_in_ms(void);
 void		ft_usleep(long long time_in_ms);
@@ -68,10 +66,10 @@ void		*philo_routine(void *arg);
 int			init_forks(t_data *data);
 int			validate_args(int argc, char **argv);
 void		*monitor_routine(void *arg);
-
-/* cleanups */
-void	cleanup(t_data *data);
-void	destroy_single_mutex(pthread_mutex_t *mutex);
-void    destroy_fork_mutexes(t_data *data, int num);
+void		cleanup(t_data *data);
+void		destroy_single_mutex(pthread_mutex_t *mutex);
+void		destroy_fork_mutexes(t_data *data, int num);
+int			philo_sleep(t_philo *philo);
+int			philo_think(t_philo *philo);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 18:56:24 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/14 19:30:34 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 20:45:05 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 void	*monitor_routine(void *arg)
 {
-	t_data	*data;
-	int		i;
+	t_data		*data;
+	int			i;
 	long long	current_time;
 
 	data = (t_data *)arg;
@@ -40,7 +40,6 @@ void	*monitor_routine(void *arg)
 			pthread_mutex_unlock(&data->philos[i].meal_mutex);
 			i++;
 		}
-		usleep(1000); // Sleep briefly to reduce CPU usage
 	}
 	return (NULL);
 }

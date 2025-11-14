@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 20:47:58 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/14 19:27:39 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 20:52:30 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	validate_args(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 	{
-		ft_putstr_fd("Invalid INPUT: 1.number_of_philosophers 2.time_to_die ", STDERR_FILENO);
+		ft_putstr_fd("Invalid INPUT: 1.number_of_philosophers \
+			2.time_to_die ", STDERR_FILENO);
 		ft_putstr_fd("3.time_to_eat 4.time_to_sleep ", STDERR_FILENO);
-		ft_putstr_fd("5.[number_of_times_each_philosopher_must_eat]\n", STDERR_FILENO);
+		ft_putstr_fd("5.[number_of_times_each_philosopher_must_eat]\n", 2);
 		return (1);
 	}
 	if (validate_before_atoi(argc, argv) != 0)
@@ -53,10 +54,9 @@ int	validate_args(int argc, char **argv)
 /**
  * Initialize mutexes for forks and printing.
  */
-
-int init_forks(t_data *data)
+int	init_forks(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->num_philos)

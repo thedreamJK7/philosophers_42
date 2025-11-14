@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:19:13 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/14 19:29:25 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 20:40:39 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /**
  * Destroy a single mutex.
  */
-
 void	destroy_single_mutex(pthread_mutex_t *mutex)
 {
 	pthread_mutex_destroy(mutex);
@@ -23,9 +22,8 @@ void	destroy_single_mutex(pthread_mutex_t *mutex)
 
 /**
  * Destroy fork mutexes and free allocated resources.
- */
-
-void destroy_fork_mutexes(t_data *data, int num)
+*/
+void	destroy_fork_mutexes(t_data *data, int num)
 {
 	int	i;
 
@@ -39,10 +37,10 @@ void destroy_fork_mutexes(t_data *data, int num)
 
 /**
  * Clean up allocated resources and destroy mutexes.
- */
+*/
 void	cleanup(t_data *data)
 {
-	int i;
+	int	i;
 
 	if (data->philos)
 	{

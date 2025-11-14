@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:07:56 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/12 21:09:36 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 21:01:35 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,32 @@ int	ft_atoi(const char *nptr)
 	return (sum * k);
 }
 
+/**
+ * Philosopher sleeping routine.
+ */
+int	philo_sleep(t_philo *philo)
+{
+	t_data	*data;
 
+	data = philo->data;
+	if (data->someone_died)
+		return (1);
+	print_action(philo, "is sleeping");
+	ft_usleep(data->time_to_sleep);
+	return (0);
+}
 
+/**
+ * Philosopher thinking routine.
+ */
+int	philo_think(t_philo *philo)
+{
+	t_data	*data;
 
+	data = philo->data;
+	if (data->someone_died)
+		return (1);
+	print_action(philo, "is thinking");
+	ft_usleep(50);
+	return (0);
+}

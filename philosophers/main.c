@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:07:43 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/14 19:02:37 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 20:43:25 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 ** Main function to start the philosophers simulation.
 ** It initializes the data, starts the philosopher routines, and cleans up resources.
 */
-
 int	main(int argc, char	**argv)
 {
 	t_data	data;
@@ -26,7 +25,6 @@ int	main(int argc, char	**argv)
 		return (1);
 	data.someone_died = 0;
 	data.start_time = get_time_in_ms();
-	// Initialize last_meal to start_time for all philosophers
 	i = 0;
 	while (i < data.num_philos)
 	{

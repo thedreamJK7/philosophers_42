@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 21:32:06 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/14 18:55:47 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/14 21:01:12 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static	int	take_forks(t_philo *philo)
 		if (philo->data->num_philos == 1)
 		{
 			pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
-			return (1);	
+			return (1);
 		}
 		pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
 		print_action(philo, "has taken a fork");
@@ -39,7 +39,7 @@ static	int	take_forks(t_philo *philo)
 	return (0);
 }
 
-static int release_forks(t_philo *philo)
+static int	release_forks(t_philo *philo)
 {
 	t_data	*data;
 
@@ -60,7 +60,6 @@ static int release_forks(t_philo *philo)
 /**
  * Philosopher eating routine.
  */
-
 static	int	philo_eat(t_philo *philo)
 {
 	t_data	*data;
@@ -81,41 +80,9 @@ static	int	philo_eat(t_philo *philo)
 }
 
 /**
- * Philosopher sleeping routine.
- */
-static	int	philo_sleep(t_philo *philo)
-{
-	t_data	*data;
-
-	data = philo->data;
-	if (data->someone_died)
-		return (1);
-	print_action(philo, "is sleeping");
-	ft_usleep(data->time_to_sleep);
-	return (0);	
-}
-
-/**
- * Philosopher thinking routine.
- */
-static	int	philo_think(t_philo *philo)
-{
-	t_data	*data;
-
-	data = philo->data;
-	if (data->someone_died)
-		return (1);
-	// Thinking time can be negligible or a small delay
-	print_action(philo, "is thinking");
-	ft_usleep(50);
-	return (0);
-}
-
-/**
  * Philosopher routine function.
  * Each philosopher will repeatedly eat, sleep, and think until someone dies.
  */
-
 void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
