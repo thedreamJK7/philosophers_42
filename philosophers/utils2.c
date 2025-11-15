@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:08:15 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/15 12:55:30 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 17:04:23 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ static void	print_status(t_data *data, int philo_id, const char *message)
 	pthread_mutex_unlock(&data->print_mutex);
 }
 
+/**
+ * Print an action performed by a philosopher.
+ */
 void	print_action(t_philo *philo, const char *action)
 {
 	print_status(philo->data, philo->id, action);

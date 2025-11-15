@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 21:32:06 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/15 13:48:21 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 17:02:22 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /**
  * Philosopher takes forks (locks mutexes).
+ * To prevent deadlock, odd-numbered philosophers pick up the right fork first,
+ * then the left fork. Even-numbered philosophers do the opposite.
  */
 static	int	take_forks(t_philo *philo)
 {
@@ -41,6 +43,8 @@ static	int	take_forks(t_philo *philo)
 
 /**
  * Philosopher releases forks (unlocks mutexes).
+ * To prevent deadlock, odd-numbered philosophers release the right fork first,
+ * then the left fork. Even-numbered philosophers do the opposite.
  */
 static int	release_forks(t_philo *philo)
 {
@@ -62,6 +66,7 @@ static int	release_forks(t_philo *philo)
 
 /**
  * Philosopher eating routine.
+ * Philosopher picks up forks, eats, and then releases forks.
  */
 static	int	philo_eat(t_philo *philo)
 {
@@ -85,6 +90,7 @@ static	int	philo_eat(t_philo *philo)
 /**
  * Philosopher routine function.
  * Each philosopher will repeatedly eat, sleep, and think until someone dies.
+ * To prevent deadlock, even-numbered philosophers wait briefly before starting.
  */
 void	*philo_routine(void *arg)
 {
@@ -95,6 +101,8 @@ void	*philo_routine(void *arg)
 	data = philo->data;
 	while (read_someone_died(data) == 0)
 	{
+		if (philo->id % 2 == 0)
+			usleep(1000);
 		if (philo_eat(philo) != 0)
 			break ;
 		if (philo_sleep(philo) != 0)

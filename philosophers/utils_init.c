@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 20:47:58 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/15 11:38:42 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 17:03:23 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	validate_before_atoi(int argc, char **argv)
 
 /**
  * Validate command-line arguments count and format.
+ * Returns 0 on success, 1 on failure.
  */
 int	validate_args(int argc, char **argv)
 {
@@ -45,6 +46,7 @@ int	validate_args(int argc, char **argv)
 
 /**
  * Initialize mutexes for forks and printing.
+ * Returns 0 on success, 1 on failure.
  */
 int	init_forks(t_data *data)
 {
@@ -63,4 +65,3 @@ int	init_forks(t_data *data)
 		destroy_fork_mutexes(data, i), 1);
 	return (0);
 }
-
