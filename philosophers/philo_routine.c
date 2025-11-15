@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 21:32:06 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/15 11:42:38 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 13:48:21 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ static	int	take_forks(t_philo *philo)
 	return (0);
 }
 
+/**
+ * Philosopher releases forks (unlocks mutexes).
+ */
 static int	release_forks(t_philo *philo)
 {
 	t_data	*data;
@@ -67,11 +70,11 @@ static	int	philo_eat(t_philo *philo)
 	data = philo->data;
 	if (take_forks(philo) != 0)
 		return (1);
+	pthread_mutex_lock(&philo->last_meal_time_mutex);
 	philo->last_meal = get_time_in_ms();
 	pthread_mutex_unlock(&philo->last_meal_time_mutex);
 	print_action(philo, EATING);
 	ft_usleep(data->time_to_eat);
-	pthread_mutex_lock(&philo->last_meal_time_mutex);
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->meal_mutex);
@@ -90,7 +93,7 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	while (data->someone_died == 0)
+	while (read_someone_died(data) == 0)
 	{
 		if (philo_eat(philo) != 0)
 			break ;

@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 11:55:42 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/15 11:46:51 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 12:53:10 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_data
 	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	someone_died_mutex;
 	t_philo			*philos;
 	pthread_t		monitor_routine;
 }				t_data;
@@ -94,5 +95,6 @@ void		destroy_fork_mutexes(t_data *data, int num);
 int			philo_sleep(t_philo *philo);
 int			philo_think(t_philo *philo);
 int			create_philo_threads(t_data *data);
+int			read_someone_died(t_data *data);
 
 #endif

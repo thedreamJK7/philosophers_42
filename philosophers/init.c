@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:12:54 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/15 11:41:00 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 13:53:49 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	init_philos(t_data *data)
 		data->philos[i].id = i + 1;
 		data->philos[i].left_fork = i;
 		data->philos[i].right_fork = (i + 1) % data->num_philos;
-		data->philos[i].last_meal = 0;
+		data->philos[i].last_meal = data->start_time;
 		data->philos[i].meals_eaten = 0;
 		data->philos[i].data = data;
 		pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
@@ -84,9 +84,10 @@ int	init_data(t_data *data, int argc, char **argv)
 	if (!data->forks)
 		return (free(data->philos), 
 			ft_putstr_fd(ERROR_MEMORY_ALLOC, 2), 1);
-	init_philos(data);
+	pthread_mutex_init(&data->someone_died_mutex, NULL);
 	data->someone_died = 0;
 	data->start_time = get_time_in_ms();
+	init_philos(data);
 	if (init_forks(data) != 0)
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:08:15 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/14 20:51:08 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 12:55:30 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	print_status(t_data *data, int philo_id, const char *message)
 	long long	timestamp;
 
 	pthread_mutex_lock(&data->print_mutex);
-	if (!data->someone_died)
+	if (!read_someone_died(data))
 	{
 		timestamp = get_time_in_ms() - data->start_time;
 		printf("%lldms philo %d %s\n", timestamp, philo_id, message);

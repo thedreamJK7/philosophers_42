@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 21:32:45 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/14 21:39:51 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 13:20:31 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,36 @@ int	create_philo_threads(t_data *data)
 		}
 		i++;
 	}
+	return (0);
+}
+
+/**
+ * Philosopher sleeping routine.
+ */
+int	philo_sleep(t_philo *philo)
+{
+	t_data	*data;
+
+	data = philo->data;
+	if (read_someone_died(data) != 0)
+		return (1);
+	print_action(philo, SLEEPING);
+	ft_usleep(data->time_to_sleep);
+	return (0);
+}
+
+/**
+ * Philosopher thinking routine.
+ */
+int	philo_think(t_philo *philo)
+{
+	t_data	*data;
+
+	data = philo->data;
+	if (read_someone_died(data) != 0)
+		return (1);
+	print_action(philo, THINKING);
+	ft_usleep(50);
 	return (0);
 }
 

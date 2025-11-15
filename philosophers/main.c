@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:07:43 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/15 11:45:44 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 13:14:01 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	main(int argc, char	**argv)
 		return (1);
 	if (pthread_create(&data.monitor_routine, NULL, 
 			monitor_routine, &data) != 0)
-	{
-		ft_putstr_fd(ERROR_CREATE_MONITOR_T, 2);
-		return (cleanup(&data), 1);
-	}
+		return (ft_putstr_fd(ERROR_CREATE_MONITOR_T, 2), cleanup(&data), 1);
 	if (pthread_join(data.monitor_routine, NULL) != 0)
 		ft_putstr_fd(ERROR_JOIN_MONITOR_T, 2);
 	i = -1;
