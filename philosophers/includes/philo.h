@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 11:55:42 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/15 12:53:10 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 18:42:50 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int			philo_sleep(t_philo *philo);
 int			philo_think(t_philo *philo);
 int			create_philo_threads(t_data *data);
 int			read_someone_died(t_data *data);
+int			thread_join_philosophers(t_data *data);
 
 #endif

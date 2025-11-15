@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 21:32:06 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/15 17:02:22 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 18:41:06 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	*philo_routine(void *arg)
 	while (read_someone_died(data) == 0)
 	{
 		if (philo->id % 2 == 0)
-			usleep(1000);
+			ft_usleep(1);
 		if (philo_eat(philo) != 0)
 			break ;
 		if (philo_sleep(philo) != 0)
