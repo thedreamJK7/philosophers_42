@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 20:47:58 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/14 21:32:16 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 11:38:42 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static int	validate_before_atoi(int argc, char **argv)
 	while (i < argc)
 	{
 		if (is_number(argv[i]) != 0)
-			return (ft_putstr_fd("Error: All arguments \
-			must be positive integers\n", 2), 1);
+			return (ft_putstr_fd(ERROR_POSITIVE_INT, 2), 1);
 		i++;
 	}
 	return (0);
@@ -35,17 +34,10 @@ static int	validate_before_atoi(int argc, char **argv)
 /**
  * Validate command-line arguments count and format.
  */
-
 int	validate_args(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
-	{
-		ft_putstr_fd("Invalid INPUT: 1.number_of_philosophers \
-			2.time_to_die ", STDERR_FILENO);
-		ft_putstr_fd("3.time_to_eat 4.time_to_sleep ", STDERR_FILENO);
-		ft_putstr_fd("5.[number_of_times_each_philosopher_must_eat]\n", 2);
-		return (1);
-	}
+		return (ft_putstr_fd(INVALID_INPUT_MSG, 2), 1);
 	if (validate_before_atoi(argc, argv) != 0)
 		return (1);
 	return (0);
@@ -62,12 +54,12 @@ int	init_forks(t_data *data)
 	while (i < data->num_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
-			return (ft_putstr_fd("Error: Mutex initialization failed\n", 2), \
+			return (ft_putstr_fd(ERROR_MUTEX_INIT, 2), \
 			destroy_fork_mutexes(data, i), 1);
 		i++;
 	}
 	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
-		return (ft_putstr_fd("Error: Mutex initialization failed\n", 2), \
+		return (ft_putstr_fd(ERROR_MUTEX_INIT, 2), \
 		destroy_fork_mutexes(data, i), 1);
 	return (0);
 }

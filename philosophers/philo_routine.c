@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 21:32:06 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/14 21:01:12 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 11:42:38 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ static	int	take_forks(t_philo *philo)
 	if (philo->id % 2 == 1)
 	{
 		pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
-		print_action(philo, "has taken a fork");
+		print_action(philo, FORK_TAKEN);
 		if (philo->data->num_philos == 1)
 		{
 			pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
 			return (1);
 		}
 		pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
-		print_action(philo, "has taken a fork");
+		print_action(philo, FORK_TAKEN);
 	}
 	else
 	{
 		pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
-		print_action(philo, "has taken a fork");
+		print_action(philo, FORK_TAKEN);
 		pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
-		print_action(philo, "has taken a fork");
+		print_action(philo, FORK_TAKEN);
 	}
 	return (0);
 }
@@ -69,7 +69,7 @@ static	int	philo_eat(t_philo *philo)
 		return (1);
 	philo->last_meal = get_time_in_ms();
 	pthread_mutex_unlock(&philo->last_meal_time_mutex);
-	print_action(philo, "is eating");
+	print_action(philo, EATING);
 	ft_usleep(data->time_to_eat);
 	pthread_mutex_lock(&philo->last_meal_time_mutex);
 	pthread_mutex_lock(&philo->meal_mutex);

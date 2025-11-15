@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:07:56 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/14 21:01:35 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 11:43:23 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	philo_sleep(t_philo *philo)
 	data = philo->data;
 	if (data->someone_died)
 		return (1);
-	print_action(philo, "is sleeping");
+	print_action(philo, SLEEPING);
 	ft_usleep(data->time_to_sleep);
 	return (0);
 }
@@ -88,7 +88,7 @@ int	philo_think(t_philo *philo)
 	data = philo->data;
 	if (data->someone_died)
 		return (1);
-	print_action(philo, "is thinking");
+	print_action(philo, THINKING);
 	ft_usleep(50);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:12:54 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/14 21:48:50 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/15 11:41:00 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,12 @@
 static int	validate_requirements(t_data *data)
 {
 	if (data->num_philos < MIN_PHILO || data->num_philos > MAX_PHILO)
-		return (ft_putstr_fd("Error: Number of philosophers must \
-			be between 1-200\n", 2), 1);
+		return (ft_putstr_fd(ERROR_N_PHILOS, 2), 1);
 	if (data->time_to_die < MIN_TIME || data->time_to_die > MAX_TIME)
-		return (ft_putstr_fd("Error: time_to_die must be between \
-			60-600000 ms\n", 2), 1);
+		return (ft_putstr_fd(ERROR_TIME_DIE, 2), 1);
 	if (data->num_meals != -1 && (data->num_meals < 1
 			|| data->num_meals > MAX_EAT))
-		return (ft_putstr_fd("Error: num_meals must be between \
-			1-1000\n", 2), 1);
+		return (ft_putstr_fd(ERROR_NUM_MEALS, 2), 1);
 	return (0);
 }
 
@@ -82,11 +79,11 @@ int	init_data(t_data *data, int argc, char **argv)
 		return (1);
 	data->philos = malloc(sizeof(t_philo) * data->num_philos);
 	if (!data->philos)
-		return (ft_putstr_fd("Error: Memory allocation failed\n", 2), 1);
+		return (ft_putstr_fd(ERROR_MEMORY_ALLOC, 2), 1);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
 	if (!data->forks)
 		return (free(data->philos), 
-			ft_putstr_fd("Error: Memory allocation failed\n", 2), 1);
+			ft_putstr_fd(ERROR_MEMORY_ALLOC, 2), 1);
 	init_philos(data);
 	data->someone_died = 0;
 	data->start_time = get_time_in_ms();
