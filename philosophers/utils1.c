@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:07:56 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/17 15:22:30 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/17 15:31:59 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ long	ft_atol(const char *str)
 int	ft_overflow_check(const char *str)
 {
 	long	num;
-	num = ft_atol(str);
 
+	num = ft_atol(str);
 	if (num > 2147483647 || num < -2147483648)
 		return (1);
 	return (0);
