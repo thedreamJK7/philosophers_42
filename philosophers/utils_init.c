@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 20:47:58 by javokhir          #+#    #+#             */
-/*   Updated: 2025/11/15 17:03:23 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/17 15:23:48 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	validate_before_atoi(int argc, char **argv)
 	while (i < argc)
 	{
 		if (is_number(argv[i]) != 0)
+			return (ft_putstr_fd(ERROR_POSITIVE_INT, 2), 1);
+		if (ft_overflow_check(argv[i]) != 0)
 			return (ft_putstr_fd(ERROR_POSITIVE_INT, 2), 1);
 		i++;
 	}

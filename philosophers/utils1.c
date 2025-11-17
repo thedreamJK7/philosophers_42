@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:07:56 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/17 15:08:05 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:22:30 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,37 @@ int	is_number(char *str)
 	return (0);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *str)
 {
-	size_t	i;
-	int		k;
-	int		sum;
+	long	result;
+	int		sign;
+	int		i;
 
+	result = 0;
+	sign = 1;
 	i = 0;
-	sum = 0;
-	k = 1;
-	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (nptr[i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 	{
-		k *= -1;
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-	else if (nptr[i] == '+')
-		i++;
-	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
-		return (0);
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		sum = sum * 10 + (nptr[i] - '0');
+		result = result * 10 + (str[i] - '0');
 		i++;
 	}
-	return (sum * k);
+	return (result * sign);
+}
+
+int	ft_overflow_check(const char *str)
+{
+	long	num;
+	num = ft_atol(str);
+
+	if (num > 2147483647 || num < -2147483648)
+		return (1);
+	return (0);
 }

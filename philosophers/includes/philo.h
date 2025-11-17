@@ -6,7 +6,7 @@
 /*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 11:55:42 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/15 18:42:50 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/17 15:22:45 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define ERROR_JOIN_PHILO_T "Error: Failed to join philosopher threads\n"
 # define ERROR_CREATE_MONITOR_T "Error: Failed to create monitor thread\n"
 # define ERROR_JOIN_MONITOR_T "Error: Failed to join monitor thread\n"
+# define ERROR_OVERFLOW "Error: Argument value overflow\n"
 
 # define FORK_TAKEN "has taken a fork"
 # define EATING "is eating"
@@ -97,5 +98,7 @@ int			philo_think(t_philo *philo);
 int			create_philo_threads(t_data *data);
 int			read_someone_died(t_data *data);
 int			thread_join_philosophers(t_data *data);
+int			ft_overflow_check(const char *str);
+long		ft_atol(const char *str);
 
 #endif

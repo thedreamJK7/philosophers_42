@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:12:54 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/17 15:08:03 by javokhir         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:25:05 by jkubaev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static int	validate_requirements(t_data *data)
 */
 static void	init_time_data(t_data *data, char **argv, int argc)
 {
-	data->num_philos = ft_atoi(argv[1]);
-	data->time_to_die = ft_atoi(argv[2]);
-	data->time_to_eat = ft_atoi(argv[3]);
-	data->time_to_sleep = ft_atoi(argv[4]);
+	data->num_philos = ft_atol(argv[1]);
+	data->time_to_die = ft_atol(argv[2]);
+	data->time_to_eat = ft_atol(argv[3]);
+	data->time_to_sleep = ft_atol(argv[4]);
 	if (argc == 6)
-		data->num_meals = ft_atoi(argv[5]);
+		data->num_meals = ft_atol(argv[5]);
 	else
 		data->num_meals = -1;
 }
