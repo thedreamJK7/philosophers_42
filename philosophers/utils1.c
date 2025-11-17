@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkubaev <jkubaev@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: javokhir <javokhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:07:56 by jkubaev           #+#    #+#             */
-/*   Updated: 2025/11/15 16:27:34 by jkubaev          ###   ########.fr       */
+/*   Updated: 2025/11/17 15:08:05 by javokhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	is_number(char *str)
 {
 	int	i;
 
+	if (!str || str[0] == '\0')
+		return (1);
 	i = 0;
 	while (str[i])
 	{
